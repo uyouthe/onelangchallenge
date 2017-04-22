@@ -123,7 +123,7 @@
 	</head>
 	<body>
 		<form action="index.php?action=add-task" method="POST">
-			<input type="text" name="content" placeholder="Add new task" required autofocus>
+			<input type="text" name="content" placeholder="Add new task" autocomplete="off" required autofocus>
 			<button>Add</button>
 		</form>
 		<section><?php foreach(get_tasks() as $task): ?>
