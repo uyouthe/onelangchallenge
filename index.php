@@ -11,9 +11,7 @@
 
 
 	function get_tasks() {
-		global $link;
-
-		$result = mysqli_query($link, 'SELECT * FROM list ORDER BY is_checked, id DESC');
+		$result = mysqli_query($GLOBALS['link'], 'SELECT * FROM list ORDER BY is_checked, id DESC');
 		$tasks = array();
 
 		for ($i = 0; $i < mysqli_num_rows($result); $i++) {
@@ -24,29 +22,15 @@
 	}
 
 	function add_task($content) {
-		global $link;
-
-		mysqli_query($link, 'INSERT INTO list (content) VALUES ("'.$content.'")');
+		mysqli_query($GLOBALS['link'], 'INSERT INTO list (content) VALUES ("'.$content.'")');
 	}
 
 	function toggle_task($id) {
-		global $link;
-
-		$task_already_checked = mysqli_fetch_array(mysqli_query($link, 'SELECT is_checked FROM list WHERE id='.$id))[0];
-
-		echo $task_already_checked;
-
-		if ($task_already_checked) {
-			mysqli_query($link, 'UPDATE list SET is_checked=FALSE WHERE id='.$id);
-		} else {
-			mysqli_query($link, 'UPDATE list SET is_checked=TRUE WHERE id='.$id);
-		}
+		mysqli_query($GLOBALS['link'], 'UPDATE list SET is_checked=NOT is_checked WHERE id='.$id);
 	}
 
 	function delete_task($id) {
-		global $link;
-
-		mysqli_query($link, 'DELETE FROM list WHERE id='.$id);
+		mysqli_query($GLOBALS['link'], 'DELETE FROM list WHERE id='.$id);
 	}
 
 	switch (isset($_GET['action']) ? $_GET['action'] : null) {
@@ -65,8 +49,6 @@
 			delete_task($_GET['id']);
 			header('Location: index.php');
 			break;
-
-		default:
 	}
 ?>
 
