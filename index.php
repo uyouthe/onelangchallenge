@@ -7,7 +7,7 @@
 	mysqli_query($link, 'CREATE TABLE list (
 		id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 		content TEXT,
-		is_checked BOOLEAN)');
+		is_checked BOOLEAN DEFAULT FALSE)');
 
 
 	function get_tasks() {
