@@ -1,5 +1,5 @@
 # Todolist implemented in one single file
-Todolist written in PHP, MySQL, HTML, CSS and JS in one single file.
+Todolist written in PHP, SQL, HTML, CSS and JS in one single file.
 
 159 lines of code.
 
